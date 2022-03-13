@@ -4,6 +4,7 @@ import microservice.account.entity.Access;
 import microservice.account.entity.Account;
 import microservice.account.entity.Role;
 import microservice.account.entity.enums.RoleType;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,8 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
@@ -37,7 +40,7 @@ class AccessRepositoryTest {
         ACCOUNT_REPOSITORY.save(account);
 
         //create Access
-        Access access = new Access(
+        access = new Access(
                 account,
                 LocalDateTime.now(),
                 UUID.randomUUID().toString(),
@@ -55,54 +58,75 @@ class AccessRepositoryTest {
     @Test
     void findAllByAccount() {
         //given
+        Account account = this.account;
 
         //when
+        List<Access> accessList = ACCESS_REPOSITORY.findAllByAccount(account);
 
         //then
+        assertThat(accessList.size()).isEqualTo(1);
     }
 
     @Test
     void findOneByToken() {
         //given
+        String token = access.getToken();
 
         //when
+        Access access = ACCESS_REPOSITORY.findOneByToken(token).orElseThrow();
 
         //then
+        assertThat(access.getToken()).isEqualTo(token);
     }
 
     @Test
     void findAllByLoginDateTimeAfter() {
         //given
+        LocalDateTime pastDateTime = LocalDateTime.of(2022, 3, 1, 20, 30, 45);
 
         //when
+        List<Access> accessList = ACCESS_REPOSITORY.findAllByLoginDateTimeAfter(pastDateTime);
 
         //then
+        assertThat(accessList.size()).isEqualTo(1);
     }
 
     @Test
     void findAllByLogoutDateTimeAfter() {
         //given
+        LocalDateTime pastDateTime = LocalDateTime.of(2022, 3, 1, 20, 30, 45);
+        access.setLogoutDateTime(LocalDateTime.now());
 
         //when
+        List<Access> accessList = ACCESS_REPOSITORY.findAllByLogoutDateTimeAfter(pastDateTime);
 
         //then
+        assertThat(accessList.size()).isEqualTo(1);
     }
 
     @Test
     void findAccessByLoginDateTimeBetween() {
         //given
+        LocalDateTime pastDateTime = LocalDateTime.of(2022, 3, 1, 20, 30, 45);
+        LocalDateTime now = LocalDateTime.now();
 
         //when
+        List<Access> accessList = ACCESS_REPOSITORY.findAccessByLoginDateTimeBetween(pastDateTime, now);
 
         //then
+        assertThat(accessList.size()).isEqualTo(1);
     }
 
     @Test
     void findAccessByLogoutDateTimeBetween() {
         //given
+        LocalDateTime pastDateTime = LocalDateTime.of(2022, 3, 1, 20, 30, 45);
+        access.setLogoutDateTime(LocalDateTime.of(2022, 3, 3, 20, 30, 45));
 
         //when
+        List<Access> accessList = ACCESS_REPOSITORY.findAccessByLogoutDateTimeBetween(pastDateTime, LocalDateTime.now());
 
         //then
+        assertThat(accessList.size()).isEqualTo(1);
     }
 }

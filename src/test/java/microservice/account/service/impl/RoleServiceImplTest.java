@@ -1,9 +1,9 @@
-package microservice.account.repository;
+package microservice.account.service.impl;
 
 import microservice.account.entity.Role;
 import microservice.account.entity.enums.RoleType;
+import microservice.account.service.RoleService;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,33 +16,32 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@Transactional
 @SpringBootTest
-class RoleRepositoryTest {
+@Transactional
+class RoleServiceImplTest {
 
-    @Autowired
-    private RoleRepository ROLE_REPOSITORY;
+    @Autowired RoleService ROLE_SERVICE;
 
     @Test
-    @DisplayName("성공) RoleType과 일치하는 Role 가져오기")
+    @DisplayName("성공) RoleType으로 Role 조회")
     void findOneByRoleType() {
         //given
-        RoleType type = RoleType.USER;
+        RoleType role = RoleType.USER;
 
         //when
-        Role role = ROLE_REPOSITORY.findOneByRoleType(type).orElseThrow();
+        Role result = ROLE_SERVICE.findOneByRoleType(role);
 
         //then
-        assertThat(role.getRoleType()).isEqualTo(type);
+        assertThat(result.getRoleType()).isEqualTo(role);
     }
 
     @Test
-    @DisplayName("성공) 모든 Role 가져오기")
+    @DisplayName("성공) 모든 Role 정보 조회")
     void findAll() {
         //given
 
         //when
-        List<Role> roles = ROLE_REPOSITORY.findAll();
+        List<Role> roles = ROLE_SERVICE.findAll();
 
         //then
         assertThat(roles.size()).isEqualTo(3);

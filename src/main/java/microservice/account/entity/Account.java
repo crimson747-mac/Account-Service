@@ -32,6 +32,8 @@ public class Account {
 
     private boolean isLogin;
 
+    private String token;
+
     public Account(String email, String password) {
         this.email = email;
         this.password = password;
@@ -43,5 +45,9 @@ public class Account {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

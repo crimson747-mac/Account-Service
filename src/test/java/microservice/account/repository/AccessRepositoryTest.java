@@ -33,7 +33,7 @@ class AccessRepositoryTest {
     @BeforeEach
     void beforeEach() {
         //create Account
-        Role roleUser = ROLE_REPOSITORY.findOneByRoleType(RoleType.USER);
+        Role roleUser = ROLE_REPOSITORY.findOneByRoleType(RoleType.USER).orElseThrow();
         account = new Account("admin@admin.com", "1234");
         account.setRole(roleUser);
 

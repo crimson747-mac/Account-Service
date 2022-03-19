@@ -4,8 +4,13 @@ import microservice.account.entity.Role;
 import microservice.account.entity.enums.RoleType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    Role findOneByRoleType(RoleType type);
+    Optional<Role> findOneByRoleType(RoleType type);
+
+    List<Role> findAll();
 
 }

@@ -1,6 +1,5 @@
 package microservice.account.service;
 
-import microservice.account.dto.AccountDto;
 import microservice.account.entity.Account;
 import microservice.account.params.LoginParam;
 import microservice.account.params.LogoutParam;

@@ -85,12 +85,4 @@ public class AccountServiceImpl implements AccountService {
                 param.getLongitude()
         ));
     }
-
-    @Override
-    public Account getAccount(Long id) {
-        log.info("[SERVICE]_[getAccount: id = {}]", id);
-
-        return ACCOUNT_REPOSITORY.findOneById(id).orElseThrow();
-    }
-
 }

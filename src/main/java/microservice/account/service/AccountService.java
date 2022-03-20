@@ -13,6 +13,4 @@ public interface AccountService {
 
     Account logout(LogoutParam param);
 
-    Account getAccount(Long id);
-
 }

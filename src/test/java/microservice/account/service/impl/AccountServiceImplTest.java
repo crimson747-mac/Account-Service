@@ -91,16 +91,4 @@ class AccountServiceImplTest {
         assertThat(result.getToken()).isNull();
     }
 
-    @Test
-    @DisplayName("성공) 사용자정보 가져오기")
-    void getAccount() {
-        //given
-        Long id = account.getId();
-
-        //when
-        Account result = ACCOUNT_SERVICE.getAccount(id);
-
-        //then
-        assertThat(result).isEqualTo(account);
-    }
 }

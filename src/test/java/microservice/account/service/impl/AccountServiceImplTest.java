@@ -1,13 +1,11 @@
 package microservice.account.service.impl;
 
 import microservice.account.entity.Account;
-import microservice.account.entity.Role;
 import microservice.account.entity.enums.RoleType;
-import microservice.account.params.LoginParam;
-import microservice.account.params.LogoutParam;
-import microservice.account.params.RegisterParam;
+import microservice.account.params.account.LoginParam;
+import microservice.account.params.account.LogoutParam;
+import microservice.account.params.account.RegisterParam;
 import microservice.account.service.AccountService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -91,4 +88,16 @@ class AccountServiceImplTest {
         assertThat(result.getToken()).isNull();
     }
 
+    @Test
+    @DisplayName("성공) 사용자정보 가져오기")
+    void getAccount() {
+        //given
+        Long id = account.getId();
+
+        //when
+        Account result = ACCOUNT_SERVICE.getAccount(id);
+
+        //then
+        assertThat(result).isEqualTo(account);
+    }
 }

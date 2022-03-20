@@ -2,9 +2,9 @@ package microservice.account.validate.account;
 
 import lombok.RequiredArgsConstructor;
 import microservice.account.entity.Account;
-import microservice.account.params.LoginParam;
-import microservice.account.params.LogoutParam;
-import microservice.account.params.RegisterParam;
+import microservice.account.params.account.LoginParam;
+import microservice.account.params.account.LogoutParam;
+import microservice.account.params.account.RegisterParam;
 import microservice.account.repository.AccountRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

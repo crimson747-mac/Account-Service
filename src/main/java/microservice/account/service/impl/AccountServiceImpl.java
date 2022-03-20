@@ -5,9 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import microservice.account.entity.Access;
 import microservice.account.entity.Account;
 import microservice.account.entity.Role;
-import microservice.account.params.LoginParam;
-import microservice.account.params.LogoutParam;
-import microservice.account.params.RegisterParam;
+import microservice.account.params.account.LoginParam;
+import microservice.account.params.account.LogoutParam;
+import microservice.account.params.account.RegisterParam;
 import microservice.account.repository.AccessRepository;
 import microservice.account.repository.AccountRepository;
 import microservice.account.repository.RoleRepository;
@@ -85,4 +85,12 @@ public class AccountServiceImpl implements AccountService {
                 param.getLongitude()
         ));
     }
+
+    @Override
+    public Account getAccount(Long id) {
+        log.info("[SERVICE]_[getAccount: id = {}]", id);
+
+        return ACCOUNT_REPOSITORY.findOneById(id).orElseThrow();
+    }
+
 }

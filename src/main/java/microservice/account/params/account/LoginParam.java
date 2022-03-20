@@ -1,18 +1,16 @@
-package microservice.account.params;
+package microservice.account.params.account;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import microservice.account.entity.enums.RoleType;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterParam {
+public class LoginParam {
 
     @Email
     private String email;
@@ -20,9 +18,7 @@ public class RegisterParam {
     @NotBlank
     private String password;
 
-    @NotBlank
-    private String password2;
+    private Double latitude;
 
-    @NotNull
-    private RoleType roleType;
+    private Double longitude;
 }

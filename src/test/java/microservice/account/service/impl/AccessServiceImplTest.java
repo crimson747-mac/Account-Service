@@ -3,12 +3,11 @@ package microservice.account.service.impl;
 import microservice.account.entity.Access;
 import microservice.account.entity.Account;
 import microservice.account.entity.enums.RoleType;
-import microservice.account.params.LoginParam;
-import microservice.account.params.LogoutParam;
-import microservice.account.params.RegisterParam;
+import microservice.account.params.account.LoginParam;
+import microservice.account.params.account.LogoutParam;
+import microservice.account.params.account.RegisterParam;
 import microservice.account.service.AccessService;
 import microservice.account.service.AccountService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional

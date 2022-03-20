@@ -58,6 +58,7 @@ public class AccountServiceImpl implements AccountService {
         Access access = createAndSaveAccess(param, account);
         account.setIsLogin(true);
         account.setToken(access.getToken());
+
         return account;
     }
 
